@@ -1,10 +1,8 @@
 package com.example.GreetingApp.controller;
 
 import com.example.GreetingApp.service.GreetingService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 @RequestMapping("/greetings")
 public class GreetingController {
@@ -24,5 +22,9 @@ public class GreetingController {
             @RequestParam(required = false) String firstName,
             @RequestParam(required = false) String lastName) {
         return greetingService.getGreeting(firstName, lastName);
+    }
+    @GetMapping("/{id}")
+    public String getGreetingById(@PathVariable Long id) {
+        return greetingService.findGreetingById(id);
     }
 }
